@@ -11,28 +11,48 @@ export default function Slider() {
         inProgress: false
     })
 
-    console.log(dataSlider, "dataslider ")
-
     const nextSlide = () => {
         // if i'm not in the end of object
-        if(slideAnim.index !== dataSlider.length) {
+        if(slideAnim.index !== dataSlider.length && !slideAnim.inProgress) {
+            
             setSlideAnim({index: slideAnim.index + 1, inProgress: true})
-        }
-        else if(slideAnim.index === dataSlider.length) {
-            setSlideAnim({index: 1, inProgress: true})
-        }
 
+            setTimeout(() => {
+                setSlideAnim({index: slideAnim.index + 1, inProgress: false})
+            }, 400)
+
+        }
+        else if(slideAnim.index === dataSlider.length && !slideAnim.inProgress) {
+
+            setSlideAnim({index: 1, inProgress: true})
+
+            setTimeout(() => {
+                setSlideAnim({index: 1, inProgress: false})
+            }, 400)
+
+        }
     }
 
     const prevSlide = () => {
         // if i'm not in the debut of object
-        if(slideAnim.index !== 1) {
+        if(slideAnim.index !== 1 && !slideAnim.inProgress) {
+             
             setSlideAnim({index: slideAnim.index - 1, inProgress: true})
-        } 
-        else if (slideAnim.index === 1) {
-            setSlideAnim({index: dataSlider.length, inProgress: true})
-        }
 
+            setTimeout(() => {
+                setSlideAnim({index: slideAnim.index - 1, inProgress: false})
+            }, 400)
+
+        } 
+        else if (slideAnim.index === 1 && !slideAnim.inProgress) {
+
+            setSlideAnim({index: dataSlider.length, inProgress: true})
+
+            setTimeout(() => {
+                setSlideAnim({index: dataSlider.length, inProgress: false})
+            }, 400)
+
+        }
 
     }
 
